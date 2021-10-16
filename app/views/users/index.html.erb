@@ -1,0 +1,9 @@
+<% @users.each do |u| %>
+    <p>
+    <%= u.uid %><br>
+    <%= u.pass %><br>
+    <%= link_to '削除', "users/#{u.id}", method: :delete %>
+    </p>
+<% end %>
+
+<%= link_to 'ユーザ登録', 'users/new' %>
