@@ -1,2 +1,32 @@
-<h1>Tweets#index</h1>
-<p>Find me in app/views/tweets/index.html.erb</p>
+<h3>Twitter</h3>
+<% @tweets.each do |t| %>
+    <p>
+    <%= t.user_id %><br>
+    <%= t.message %><br>
+    <%  if session[:login_uid] %>
+      <%= link_to '削除', tweet_path(t), method: :delete %>
+      <% if t.likes.count > 0 %>
+        <%= link_to '♥', like_path(t), method: :delete %>
+      <% else %>
+        <%= link_to '♡', likes_path(tweet_id: t.id), method: :post %>
+      <% end %>
+    <% end %>
+    </p>
+<% end %>
+
+<p> 
+<% if session[:login_uid] %>
+  <%= link_to 'ツイートする', new_tweet_path %>
+<% end %>
+</p>
+<p>
+<% if session[:login_uid] %>
+  <%= link_to 'ログアウト', top_logout_path %>
+<% else %>
+  <%= link_to 'ログイン', top_main_path %>
+<% end %>
+</p>
+
+<p>
+  <%= link_to 'ユーザ一覧', users_path %>
+</p>

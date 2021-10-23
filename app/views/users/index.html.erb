@@ -1,9 +1,16 @@
+<p>ユーザ一覧</p>
 <% @users.each do |u| %>
     <p>
     <%= u.uid %><br>
     <%= u.pass %><br>
-    <%= link_to '削除', "users/#{u.id}", method: :delete %>
+    <%= link_to '削除', user_path(u), method: :delete %>
     </p>
 <% end %>
 
-<%= link_to 'ユーザ登録', 'users/new' %>
+<p>
+  <%= link_to '新規ユーザ追加', new_user_path %>
+</p>
+
+<p>
+  <%= link_to 'ツイート一覧', tweets_path %>
+</p>
